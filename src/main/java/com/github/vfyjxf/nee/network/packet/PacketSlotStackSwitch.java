@@ -1,6 +1,7 @@
 package com.github.vfyjxf.nee.network.packet;
 
 import appeng.container.AEBaseContainer;
+import appeng.container.slot.SlotFake;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
@@ -66,16 +67,21 @@ public class PacketSlotStackSwitch implements IMessage {
             EntityPlayerMP player = ctx.getServerHandler().player;
             Container container = player.openContainer;
             player.getServerWorld().addScheduledTask(() -> {
-                if (container instanceof AEBaseContainer) {
-                    ItemStack nextStack = message.getStack();
-                    if (nextStack != null) {
-                        for (Integer craftingSlot : message.getSlots()) {
-                            Slot currentSlot = container.getSlot(craftingSlot);
-                            ItemStack next = nextStack.copy();
-                            next.setCount(currentSlot.getStack().getCount());
-                            currentSlot.putStack(next);
-                        }
+                if (!(container instanceof AEBaseContainer)) {
+                    return;
+                }
+                ItemStack nextStack = message.getStack();
+                if (nextStack == null) {
+                    return;
+                }
+                for (Integer craftingSlot : message.getSlots()) {
+                    Slot currentSlot = container.getSlot(craftingSlot);
+                    if (!(currentSlot instanceof SlotFake)) {
+                        continue;
                     }
+                    ItemStack next = nextStack.copy();
+                    next.setCount(currentSlot.getStack().getCount());
+                    currentSlot.putStack(next);
                 }
             });
             return null;
