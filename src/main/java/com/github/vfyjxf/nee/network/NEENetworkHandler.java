@@ -23,7 +23,6 @@ public class NEENetworkHandler {
         INSTANCE.registerMessage(PacketStackSizeChange.Handler.class, PacketStackSizeChange.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketSlotStackSwitch.Handler.class, PacketSlotStackSwitch.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketCraftingRequest.Handler.class, PacketCraftingRequest.class, nextId(), Side.SERVER);
-        INSTANCE.registerMessage(PacketOpenGui.Handler.class, PacketOpenGui.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketOpenCraftAmount.Handler.class, PacketOpenCraftAmount.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketValueConfigServer.Handler.class, PacketValueConfigServer.class, nextId(), Side.SERVER);
         INSTANCE.registerMessage(PacketValueConfigClient.Handler.class, PacketValueConfigClient.class, nextId(), Side.CLIENT);
