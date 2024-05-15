@@ -2,7 +2,6 @@ package com.github.vfyjxf.nee.helper;
 
 import appeng.client.gui.implementations.GuiMEMonitorable;
 import appeng.client.me.ItemRepo;
-import appeng.container.implementations.ContainerPatternTerm;
 import com.github.vfyjxf.nee.utils.Globals;
 import com.github.vfyjxf.nee.utils.ReflectionHelper;
 import com.google.common.collect.Lists;
@@ -22,10 +21,10 @@ public class PlatformHelper {
 
     private static boolean unofficial;
     public static Class<?> containerPatternEncoderClass = null;
-    public static Class<?> containerPatternTermClass = ContainerPatternTerm.class;
+    public static Class<?> containerPatternTermClass = null;
     public static Class<?> guiWCTClass = null;
 
-    public static Class<?> guiMEMonitorable = GuiMEMonitorable.class;
+    public static Class<?> guiMEMonitorable = null;
     public static Class<?> containerWirelessCraftingTermClass = null;
     public static Class<?> wirelessCraftingGuiClass = null;
 
@@ -38,6 +37,8 @@ public class PlatformHelper {
         guiWCTClass = ReflectionHelper.getClassForName("p455w0rd.wct.client.gui.GuiWCT");
         containerWirelessCraftingTermClass = ReflectionHelper.getClassForName("appeng.container.implementations.ContainerWirelessCraftingTerminal");
         wirelessCraftingGuiClass = ReflectionHelper.getClassForName("appeng.client.gui.implementations.GuiWirelessCraftingTerminal");
+        guiMEMonitorable = ReflectionHelper.getClassForName("appeng.client.gui.implementations.GuiMEMonitorable");
+        containerPatternTermClass = ReflectionHelper.getClassForName("appeng.container.implementations.ContainerPatternTerm");
     }
 
     public static boolean issUnofficial() {
