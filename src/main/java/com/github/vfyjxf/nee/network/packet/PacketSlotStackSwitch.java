@@ -80,7 +80,8 @@ public class PacketSlotStackSwitch implements IMessage {
                         continue;
                     }
                     ItemStack next = nextStack.copy();
-                    next.setCount(currentSlot.getStack().getCount());
+                    ItemStack stackInSlot = currentSlot.getStack();
+                    next.setCount(!stackInSlot.isEmpty() ? stackInSlot.getCount() : 1);
                     currentSlot.putStack(next);
                 }
             });
