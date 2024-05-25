@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A list for storing player-preferred Ingredient
@@ -33,6 +34,8 @@ public class PreferenceHelper {
         }
 
         return ingredients.stream()
+                .filter(Objects::nonNull)
+                .filter(stack -> !stack.isEmpty())
                 .filter(PreferenceHelper::isPreferMod)
                 .findAny()
                 .map(is -> {
